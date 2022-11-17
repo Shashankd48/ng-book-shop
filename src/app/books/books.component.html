@@ -1,1 +1,28 @@
-<p>books works!</p>
+<div class="h-screen mx-auto main">
+  <h1 class="font-semibold text-4xl mb-2 text-center">Amezone Books</h1>
+
+  <div *ngIf="showBooks; else elseBlock">
+    <ul class="mt-5" *ngFor="let book of books">
+      <li class="border-gray-300 border-2 flex items-start rounded">
+        <img src="{{ book.photo }}" [alt]="book.name" class="w-20" />
+        <div class="p-3">
+          <h3 class="text-xl font-bold">{{ book.name }}</h3>
+          <p class="text-blue-600 font-bold italic">by {{ book.author }}</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <ng-template #elseBlock>
+    <p class="text-center">Show books is disabled now!</p>
+  </ng-template>
+
+  <div class="flex space-x-2 justify-center my-4">
+    <app-button
+      [title]="showBooks ? 'Hide Books' : 'Show Books'"
+      [handleClick]="toggleShowBooks"
+    >
+    </app-button>
+
+    <button (click)="toggleShowBooks()">click</button>
+  </div>
+</div>
